@@ -126,9 +126,11 @@ class block_configurable_reports extends block_list {
                         $this->content->items[] = \html_writer::link($url, $rname, $attrs);
                     }
                 }
+                /*
                 if (!empty($this->content->items)) {
                     $this->content->items[] = '========';
                 }
+                */
             }
         }
 
@@ -148,9 +150,11 @@ class block_configurable_reports extends block_list {
                         $this->content->items[] = \html_writer::link($url, $rname, $attrs);
                     }
                 }
+                /*
                 if (!empty($this->content->items)) {
                     $this->content->items[] = '========';
                 }
+                */
             }
         }
 
