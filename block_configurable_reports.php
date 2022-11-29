@@ -112,6 +112,8 @@ class block_configurable_reports extends block_list {
             $context = context_course::instance($course->id);
         }
 
+        $divider = false;
+
         // Site (Shared) reports.
         if (!empty($this->config->displayglobalreports)) {
             $reports = $DB->get_records('block_configurable_reports', array('global' => 1), 'name ASC');
@@ -124,6 +126,7 @@ class block_configurable_reports extends block_list {
                         $url = new \moodle_url('/blocks/configurable_reports/viewreport.php', $params);
                         $attrs = ['alt' => $rname];
                         $this->content->items[] = \html_writer::link($url, $rname, $attrs);
+                        $divider = true;
                     }
                 }
                 /*
@@ -147,6 +150,10 @@ class block_configurable_reports extends block_list {
                         $params = ['id' => $report->id, 'courseid' => $course->id];
                         $url = new \moodle_url('/blocks/configurable_reports/viewreport.php', $params);
                         $attrs = ['alt' => $rname];
+                        if ($divider && !empty($this->content->items)) {
+                            $this->content->items[] = '<hr style="margin:0px;" />';
+                            $divider = false;
+                        }
                         $this->content->items[] = \html_writer::link($url, $rname, $attrs);
                     }
                 }
@@ -162,6 +169,9 @@ class block_configurable_reports extends block_list {
             || has_capability('block/configurable_reports:manageownreports', $context)) {
             $url = new \moodle_url('/blocks/configurable_reports/managereport.php', ['courseid' => $course->id]);
             $linktext = get_string('managereports', 'block_configurable_reports');
+            if (!empty($this->content->items)) {
+                $this->content->items[] = '<hr style="margin:0px;" />';
+            }
             $this->content->items[] = \html_writer::link($url, $linktext);
         }
 
