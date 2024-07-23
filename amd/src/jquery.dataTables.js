@@ -2949,7 +2949,7 @@
 			{
 				if ( oSettings._iDisplayLength >= 0 )
 				{
-					var iPages = parseInt( (oSettings.fnRecordsDisplay()-1) / oSettings._iDisplayLength, 10 ) + 1;
+					var iPages = parseInt( (oSettings.fnRecordsDisplay()-1) / oSettings._iDisplayLength, 20 ) + 1;
 					oSettings._iDisplayStart = (iPages-1) * oSettings._iDisplayLength;
 				}
 				else
